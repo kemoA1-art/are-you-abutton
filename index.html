@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>زرار تاني خالص 🎙️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Cairo', sans-serif;
+      background-image: url("https://i.postimg.cc/Nfb83yYf/file-00000000809462468cb22667863b504f.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      backdrop-filter: brightness(0.4);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      background-color: rgba(0,0,0,0.5);
+      padding: 1rem;
+      border-radius: 15px;
+    }
+
+    button {
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      margin: 0.5rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #00ffc8;
+      color: #000;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00e6b3;
+    }
+
+    .response {
+      margin-top: 2rem;
+      font-size: 1.3rem;
+      min-height: 60px;
+      background-color: rgba(0,0,0,0.5);
+      padding: 1rem;
+      border-radius: 15px;
+    }
+
+    #restartBtn {
+      display: none;
+      margin-top: 2rem;
+      background-color: #ffcb05;
+    }
+
+  </style>
+</head>
+<body>
+  <h1 id="question">هنتكلم جد يا زرار... مستعد؟ 🎙️</h1>
+  <div>
+    <button onclick="answer('yes')">أه طبعا يا استاذ زرار</button>
+    <button onclick="answer('no')">مش جاهز نفسيًا</button>
+  </div>
+  <div class="response" id="responseText"></div>
+  <button id="restartBtn" onclick="restartGame()">دوس هنا يمكن حد يسمعك 🎧</button>
+
+  <script>
+    const questions = [
+      "هل عمرك اتفكيت بالغلط؟ 🔧",
+      "لو كنت زرار جاكيت... تبقى رسمي ولا كاجوال؟ 👔🧥",
+      "هل بتتمنى تبقى سوستة؟ ولا راضي بالزرارية؟ 🤔",
+      "هل بتغير مكانك حسب الموضة؟ 👗",
+      "لو كنت زرار في إذاعة... هتقدم برنامج إيه؟ 📻"
+    ];
+
+    const yesReplies = [
+      "واضح إنك زرار واعي مثقف 🎓",
+      "زرار ملوكي بيرد بحكمة 👑",
+      "رد مؤثر.. لازم نعمله تريند 💬",
+      "انت ضيف بودكاست جامد أوي! 🔥",
+      "كنت دايمًا حاسس إنك زرار مميز 👕"
+    ];
+
+    const noReplies = [
+      "بلاش كده يا زرار.. إحنا على الهوا 😅",
+      "هتضيع فرصتك في الشهرة كده! 📡",
+      "زرار خجول؟ مش متعودين على كده 😳",
+      "طيب استرجل ورد علينا 😤",
+      "يعني نكمل الحلقة من غيرك؟! 🫣"
+    ];
+
+    let currentQuestion = 0;
+
+    function answer(choice) {
+      const replyArr = choice === 'yes' ? yesReplies : noReplies;
+      const reply = replyArr[Math.floor(Math.random() * replyArr.length)];
+
+      document.getElementById('responseText').textContent = reply;
+
+      currentQuestion++;
+      if (currentQuestion < questions.length) {
+        setTimeout(() => {
+          document.getElementById('question').textContent = questions[currentQuestion];
+          document.getElementById('responseText').textContent = "";
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          document.getElementById('question').textContent = "شكراً لمشاركتك في بودكاست زرار 🎤";
+          document.getElementById('responseText').textContent = "اتكلمت بما فيه الكفاية يا نجم 🤝";
+          document.querySelector('div').style.display = "none";
+          document.getElementById('restartBtn').style.display = "inline-block";
+        }, 2000);
+      }
+    }
+
+    function restartGame() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
